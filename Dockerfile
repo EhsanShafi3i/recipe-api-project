@@ -10,14 +10,19 @@ ENV PYTHONUNBUFFERED=1 \
 WORKDIR /app
 
 # Install system dependencies (bash and curl for debugging, if needed)
-RUN apt update && apt install -y --no-install-recommends bash curl && \
-    apt clean && \
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    bash \
+    curl \
+    postgresql-client \
+    build-essential \
+    libpq-dev && \
+    apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 # Copy only requirements files first to leverage Docker cache
 COPY ./requirements.txt ./requirements.dev.txt /app/
 
-# Use a faster index URL for pip (e.g., Cloudflare mirror)
+# Create a virtual environment and install dependencies
 RUN python -m venv /py && \
     /py/bin/pip install --no-cache-dir --upgrade pip && \
     /py/bin/pip install --no-cache-dir --index-url https://pypi.org/simple -r /app/requirements.txt && \
@@ -35,4 +40,3 @@ USER django-user
 
 # Expose the application port
 EXPOSE 8000
-

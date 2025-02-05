@@ -3,7 +3,7 @@ FROM python:3.12.4-slim
 # Set environment variables
 ENV PYTHONUNBUFFERED=1 \
     CRYPTOGRAPHY_DONT_BUILD_RUST=1 \
-    DEV=false \
+    DEV=true \
     PATH="/py/bin:$PATH"
 
 # Set working directory

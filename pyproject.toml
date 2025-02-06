@@ -13,7 +13,7 @@ extend-select = [
     "RET", # Return statements
     "D"
 ]
-
+flexible = ["D"]
 exclude = [
     "/**/__init__.py"
 ]

@@ -1,0 +1,19 @@
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+extend-select = [
+    "E",   # Style errors (PEP8)
+    "F",   # Used variables and syntax errors 
+    "I",   # Import sorting
+    "B",   # Common bugs
+    "C",   # Complexity
+    "N",   # Naming
+    "UP",  # Python upgrades
+    "S",   # Security
+    "RET", # Return statements
+    "D"
+]
+
+exclude = [
+    "/**/__init__.py"
+]

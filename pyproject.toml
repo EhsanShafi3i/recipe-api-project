@@ -13,7 +13,7 @@ extend-select = [
     "RET", # Return statements
     "D"
 ]
-ignore=["S105","D100","D101","S107"]
+ignore=["S105","D100","D101","S107","S106"]
 exclude = [
     "/**/__init__.py",
     "*/migrations"

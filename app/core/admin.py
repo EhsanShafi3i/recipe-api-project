@@ -27,12 +27,24 @@ class UserAdmin(BaseUserAdmin):
         ),
         (("last login"), {"fields": ("last_login",)}),
     )
-
+    readonly_fields = ("last_login",)
     add_fieldsets = (
-        (None, {"fields": ("name", "email", "password1", "password2")}),
         (
-            "Permissions",
-            {"fields": ("is_active", "is_staff", "is_superuser", "user_permissions")},
+            None,
+            {
+                "classes": ("wide",),
+                "fields": ("name", "email", "password1", "password2"),
+            },
+        ),
+        (
+            "Permissions and sex ",
+            {
+                "fields": (
+                    "is_active",
+                    "is_staff",
+                    "is_superuser",
+                )
+            },
         ),
     )
 

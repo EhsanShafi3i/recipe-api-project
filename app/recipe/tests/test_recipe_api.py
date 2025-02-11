@@ -46,6 +46,10 @@ class PrivateRecipeAPITest(TestCase):
     def setUp(self) -> None:
         """Set up the client."""
         self.client = APIClient()
+        default = {"email": "test@example.com", "password": "testpass123"}
+
+        self.user = get_user_model().objects.create_user(**default)
+        self.client.force_authenticate(user=self.user)
 
     def test_retrieve_recipe(self):
         """Test retrieving a list."""

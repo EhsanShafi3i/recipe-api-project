@@ -7,7 +7,7 @@ from recipe import serializers
 
 
 class RecipeVeiwSet(viewsets.ModelViewSet):
-    serializer_class = serializers.RecipeSerializer
+    serializer_class = serializers.RecipeDetailSerializer
     queryset = Recipe.objects.all()
     permission_classes = [
         IsAuthenticated,
@@ -19,3 +19,9 @@ class RecipeVeiwSet(viewsets.ModelViewSet):
     def get_queryset(self):
         """Retrieve recipe for authenticated user."""
         return self.queryset.filter(user=self.request.user).order_by("-id")
+
+    def get_serializer_class(self):
+        """Use specific serializer for each methods."""
+        if self.action == "list":
+            return serializers.RecipeSerializer
+        return serializers.RecipeDetailSerializer
